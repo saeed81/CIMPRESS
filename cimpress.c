@@ -70,7 +70,7 @@ int main(void){
   XSelectInput(dsp, win, ExposureMask | StructureNotifyMask | KeyPressMask | ButtonPressMask | PointerMotionMask);        // We want to get MapNotify events  
   XGCValues gr_values;
   //XFontStruct *fontinfo = XLoadQueryFont(dsp,"-adobe-courier-medium-r-normal--25-180-100-100-m-150-iso10646-1");
-  XFontStruct *fontinfo = XLoadQueryFont(dsp,"lucidasanstypewriter-bold-18");
+  XFontStruct *fontinfo = XLoadQueryFont(dsp,"-adobe-helvetica-bold-r-normal--18-180-75-75-p-103-iso8859-15");
   //XFontStruct *fontinfo = XLoadQueryFont(dsp,"10x20");
   gr_values.font =   fontinfo->fid;
   gr_values.function =   GXcopy;
@@ -83,8 +83,9 @@ int main(void){
   // "Map" the window (that is, make it appear on the screen)                                                                                                                     
   for(;;){XEvent e; XNextEvent(dsp,&e); if(e.type == MapNotify) break;} //Wait for the MapNotify event  
   XFlush(dsp);
+  XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "Validation tools for oceanography data  SMHI";
-  XDrawString(dsp, win, gc, 150 , 400  , title,lenstring(title));
+  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *page = "1";
@@ -93,9 +94,9 @@ int main(void){
   XSetForeground(dsp, gc, 0x00ffff00);
   XFillRectangle(dsp, win, gc, 200, 100, 400, 100);
   XFlush(dsp);
-  char *title1 = "SMHI";
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  XDrawString(dsp, win, gc, 350 , 150,title1,lenstring(title1));
+  char *title1 = "SMHI VALIDATION TOOLS";
+  XSetForeground(dsp, gc, 0x0);
+  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   XEvent e;
@@ -133,12 +134,13 @@ int main(void){
 	XSetForeground(dsp, gc, 0x00ffff00);
 	XFillRectangle(dsp, win, gc, 200, 100, 400, 100);
 	XFlush(dsp);
-	char *title1 = "SMHI";
-	XSetForeground(dsp, gc, 0x00A9A9A9);
-	XDrawString(dsp, win, gc, 350 , 150,title1,lenstring(title1));
+	char *title1 = "SMHI VALIDATION TOOLS";
+	XSetForeground(dsp, gc, 0x0);
+	XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
 	XFlush(dsp);
+	XSetForeground(dsp, gc, 0x00A9A9A9);
 	char *title = "Validation tools for oceanography data  SMHI";
-	XDrawString(dsp, win, gc, 100 , 400  , title,lenstring(title));
+	XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
 	XFlush(dsp);
 	XSetForeground(dsp, gc, 0x000000ff);
 	char *page = "1";
