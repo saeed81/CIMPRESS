@@ -92,6 +92,20 @@ void pagecall(int *pgnum){
 }  
 
 
+void setupfirstpage(void){
+  XSetForeground(dsp, gc, 0x00A9A9A9);
+  char *title = "Validation tools for oceanography data  SMHI";
+  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XSetForeground(dsp, gc, 0x00ffff00);
+  XFillRectangle(dsp, win, gc, 200, 100, 400, 100);
+  char *title1 = "SMHI VALIDATION TOOLS";
+  XSetForeground(dsp, gc, 0x0);
+  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
+  XSetForeground(dsp, gc, 0x000000ff);
+  char pageinfo1[2] = "1";
+  XDrawString(dsp, win, gc, 380 , 780  ,pageinfo1 , 1);
+}    
+
 
 
 int main(void){
@@ -101,43 +115,37 @@ int main(void){
   visual=DefaultVisual(dsp, 0);
   win    = XCreateSimpleWindow (dsp, DefaultRootWindow (dsp),0, 0, NX,NY,0,0xffffffff,0xffffffff);
   XSelectInput(dsp, win, ExposureMask | StructureNotifyMask | KeyPressMask | ButtonPressMask | PointerMotionMask);        // We want to get MapNotify events  
-  
-  //XFontStruct *fontinfo = XLoadQueryFont(dsp,"-adobe-courier-medium-r-normal--25-180-100-100-m-150-iso10646-1");
-  
-  //XFontStruct *fontinfo = XLoadQueryFont(dsp,"10x20");
-  XMapWindow(dsp, win);
-  // "Map" the window (that is, make it appear on the screen)                                                                                                                     
-  for(;;){XEvent e; XNextEvent(dsp,&e); if(e.type == MapNotify) break;} //Wait for the MapNotify event
-  XFlush(dsp);
   fontinfo = XLoadQueryFont(dsp,"-adobe-helvetica-bold-r-normal--18-180-75-75-p-103-iso8859-15");
+  //fontinfo = XLoadQueryFont(dsp,"9x15");
   gr_values.font =   fontinfo->fid;
   gr_values.function =   GXcopy;
   gr_values.plane_mask = AllPlanes;
   gr_values.foreground = BlackPixel(dsp,screen_num);
   gr_values.background = WhitePixel(dsp,screen_num);
   gc=XCreateGC(dsp,win,GCFont | GCFunction | GCPlaneMask | GCForeground | GCBackground,&gr_values);
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "Validation tools for oceanography data  SMHI";
-  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  //XFontStruct *fontinfo = XLoadQueryFont(dsp,"-adobe-courier-medium-r-normal--25-180-100-100-m-150-iso10646-1");
+  //XFontStruct *fontinfo = XLoadQueryFont(dsp,"10x20");
+  //XMapRaised(dsp, win);
+  XMapWindow(dsp, win);
+  // "Map" the window (that is, make it appear on the screen)                                                                                                                     
+  for(;;){XEvent e; XNextEvent(dsp,&e); if(e.type == MapNotify) break;} //Wait for the MapNotify event
   XFlush(dsp);
-  XSetForeground(dsp, gc, 0x00ffff00);
-  XFillRectangle(dsp, win, gc, 200, 100, 400, 100);
-  XFlush(dsp);
-  char *title1 = "SMHI VALIDATION TOOLS";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char pageinfo1[2] = "1";
-  XDrawString(dsp, win, gc, 380 , 780  ,pageinfo1 , 1);
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char pageinfo2[] = "sss";
-  XDrawString(dsp, win, gc, 380 , 780  ,pageinfo2 , 3);
-  XFlush(dsp);
-   
-  //XSync(dsp,False);
-    
+  int first = 1;
+  XEvent report;
+  for (;first;) {
+    XNextEvent(dsp, &report);
+    switch (report.type) {
+      /* Draw our text first */
+    case Expose:{
+      printf("%d \n",report.xexpose.count);
+      if (report.xexpose.count > 0 ){
+	first = 0;
+      }
+      setupfirstpage();
+    }break;
+    }
+  }
+  XFlush(dsp);    
   XEvent e;
   char BUFFER[80] = {'\0'};
   KeySym keysym;
