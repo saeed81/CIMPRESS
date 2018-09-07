@@ -74,18 +74,11 @@ pagewrap pages[10] = {&page1,&page2,&page3,&page4,&page5,&page6,&page7,&page8,&p
 void pagecall(int *pgnum){
     
   if (*pgnum > 9) {
-    //printf("pagenum is %d",*pgnum);
-    (*pages[9])();
     *pgnum = 9;
-    return;
   }
   if (*pgnum < 0){
-    (*pages[0])();
-    //printf("pagenum is %d",*pgnum);
     *pgnum = 0;
-    return;
   }
-  //printf("pagenum is %d",*pgnum);
   (*pages[*pgnum])();
 
   return;
@@ -107,9 +100,8 @@ void setupfirstpage(void){
 }    
 
 
+void init_x(void){
 
-int main(void){
- 
   dsp = XOpenDisplay((char *)0);
   screen_num = DefaultScreen(dsp);
   visual=DefaultVisual(dsp, 0);
@@ -130,6 +122,19 @@ int main(void){
   // "Map" the window (that is, make it appear on the screen)                                                                                                                     
   for(;;){XEvent e; XNextEvent(dsp,&e); if(e.type == MapNotify) break;} //Wait for the MapNotify event
   XFlush(dsp);
+ 
+}
+
+void close_x(void){
+  XFreeGC(dsp,gc);
+  XDestroyWindow(dsp,win);
+  XCloseDisplay(dsp);
+}
+
+int main(void){
+ 
+  init_x();
+
   int first = 1;
   XEvent report;
   for (;first;) {
@@ -142,10 +147,12 @@ int main(void){
 	first = 0;
       }
       setupfirstpage();
+      first = 0;
     }break;
     }
   }
   XFlush(dsp);    
+
   XEvent e;
   char BUFFER[80] = {'\0'};
   KeySym keysym;
@@ -171,8 +178,6 @@ int main(void){
     }
   }
   
-  XDestroyWindow(dsp,win);
-  XCloseDisplay(dsp);
-
+  close_x();
   return 0;
 }
