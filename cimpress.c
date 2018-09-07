@@ -160,11 +160,11 @@ int main(void){
     if (e.type == KeyPress){
       XSetForeground(dsp, gc, 0x00A9A9A9);
       ncount = XLookupString (&e.xkey,BUFFER,lenstring(BUFFER), &keysym, NULL);
-      if ((keysym == XK_Up) || (keysym == XK_Page_Up)){
+      if ((keysym == XK_Up) || (keysym == XK_Page_Up) || (keysym == XK_Right)){
 	npage++;
 	pagecall(&npage);
       }
-      if ((keysym == XK_Down) || (keysym == XK_Page_Down)){
+      if ((keysym == XK_Down) || (keysym == XK_Page_Down) || (keysym == XK_Left)){
 	npage--;
 	pagecall(&npage);
       }
