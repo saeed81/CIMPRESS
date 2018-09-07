@@ -3,7 +3,7 @@ void page1(void){
   XSetForeground(dsp, gc, 0x00ffff00);
   XFillRectangle(dsp, win, gc, 200, 100, 400, 100);
   XFlush(dsp);
-  char *title1 = "SMHI VALIDATION TOOLS";
+  char *title1 = "SMHI VALIDATION TOOLS with CIMPRESS";
   XSetForeground(dsp, gc, 0x0);
   XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
   XFlush(dsp);
@@ -170,6 +170,54 @@ void page10(void){
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *page = "10";
+  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
+  XFlush(dsp);
+  return;
+}
+void page11(void){
+  XClearWindow(dsp,win);
+  char *title1 = "Welcome to page 11";
+  XSetForeground(dsp, gc, 0x0);
+  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
+  XFlush(dsp);
+  XSetForeground(dsp, gc, 0x00A9A9A9);
+  char *title = "To be added later";
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
+  XFlush(dsp);
+  XSetForeground(dsp, gc, 0x000000ff);
+  char *page = "11";
+  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
+  XFlush(dsp);
+  return;
+}
+void page12(void){
+  XClearWindow(dsp,win);
+  char *title1 = "Welcome to page 12";
+  XSetForeground(dsp, gc, 0x0);
+  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
+  XFlush(dsp);
+  XSetForeground(dsp, gc, 0x00A9A9A9);
+  char *title = "To be added later";
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
+  XFlush(dsp);
+  XSetForeground(dsp, gc, 0x000000ff);
+  char *page = "12";
+  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
+  XFlush(dsp);
+  return;
+}
+void page13(void){
+  XClearWindow(dsp,win);
+  char *title1 = "Welcome to page 13";
+  XSetForeground(dsp, gc, 0x0);
+  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
+  XFlush(dsp);
+  XSetForeground(dsp, gc, 0x00A9A9A9);
+  char *title = "To be added later";
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
+  XFlush(dsp);
+  XSetForeground(dsp, gc, 0x000000ff);
+  char *page = "13";
   XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
   XFlush(dsp);
   return;

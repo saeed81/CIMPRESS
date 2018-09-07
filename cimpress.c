@@ -67,20 +67,16 @@ void writetostring(char *buffer, int N, char *str,...){
 
 
 typedef void (*pagewrap)(void);
-pagewrap pages[10] = {&page1,&page2,&page3,&page4,&page5,&page6,&page7,&page8,&page9,&page10};
+pagewrap pages[] = {&page1,&page2,&page3,&page4,&page5,&page6,&page7,&page8,&page9,&page10,&page11,&page12,&page13};
 
 
 
 void pagecall(int *pgnum){
-    
-  if (*pgnum > 9) {
-    *pgnum = 9;
-  }
-  if (*pgnum < 0){
-    *pgnum = 0;
-  }
+  int ntotal = ArrayCount(pages) - 1;   
+  if (*pgnum > ntotal)*pgnum = ntotal;
+  if (*pgnum < 0)*pgnum = 0;
   (*pages[*pgnum])();
-
+  
   return;
 }  
 
@@ -91,7 +87,7 @@ void setupfirstpage(void){
   XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
   XSetForeground(dsp, gc, 0x00ffff00);
   XFillRectangle(dsp, win, gc, 200, 100, 400, 100);
-  char *title1 = "SMHI VALIDATION TOOLS";
+  char *title1 = "SMHI VALIDATION TOOLS with CIMPRESS";
   XSetForeground(dsp, gc, 0x0);
   XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
   XSetForeground(dsp, gc, 0x000000ff);
@@ -142,7 +138,7 @@ int main(void){
     switch (report.type) {
       /* Draw our text first */
     case Expose:{
-      printf("%d \n",report.xexpose.count);
+      //printf("%d \n",report.xexpose.count);
       if (report.xexpose.count > 0 ){
 	first = 0;
       }
@@ -172,6 +168,15 @@ int main(void){
 	npage--;
 	pagecall(&npage);
       }
+      if (keysym == XK_Home){
+	npage = 0; 
+	pagecall(&npage);
+      }
+      if (keysym == XK_End){
+	npage = ArrayCount(pages) -1; 
+	pagecall(&npage);
+      }
+      
       if (keysym == XK_q){
 	done = 0;
       }
