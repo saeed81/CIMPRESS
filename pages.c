@@ -47,7 +47,7 @@ void page3(void){
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "To be added later";
-  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *page = "3";
@@ -64,7 +64,7 @@ void page4(void){
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "To be added later";
-  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *page = "4";
@@ -81,7 +81,7 @@ void page5(void){
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "To be added later";
-  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *page = "5";
@@ -98,7 +98,7 @@ void page6(void){
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "To be added later";
-  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *page = "6";
@@ -115,7 +115,7 @@ void page7(void){
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "To be added later";
-  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *page = "7";
@@ -132,7 +132,7 @@ void page8(void){
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "To be added later";
-  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *page = "8";
@@ -149,7 +149,7 @@ void page9(void){
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "To be added later";
-  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *page = "9";
@@ -166,7 +166,7 @@ void page10(void){
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "To be added later";
-  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *page = "10";
