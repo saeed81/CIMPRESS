@@ -1,11 +1,11 @@
 void page1(void){
   XClearWindow(dsp,win);
   XSetForeground(dsp, gc, 0x00ffff00);
-  XFillRectangle(dsp, win, gc, 200, 100, 400, 100);
+  XFillRectangle(dsp, win, gc, NX / 4, NY / 10, NX / 2, NY / 10);
   XFlush(dsp);
-  char *title1 = "SMHI VALIDATION TOOLS with CIMPRESS";
+  char *title1 = "SMHI VALIDATION TOOLS";
   XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
+  XDrawString(dsp, win, gc, NX / 3 , NY /3,title1,lenstring(title1));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "Validation tools for oceanography data  SMHI";
@@ -13,7 +13,7 @@ void page1(void){
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char *pageinfo = "1";
-  XDrawString(dsp, win, gc, 380 , 780  ,pageinfo , lenstring(pageinfo));
+  XDrawString(dsp, win, gc, NX / 2 , NY -20  ,pageinfo , lenstring(pageinfo));
   XFlush(dsp);
   return;
 }

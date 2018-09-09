@@ -86,13 +86,13 @@ void setupfirstpage(void){
   char *title = "Validation tools for oceanography data  SMHI";
   XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
   XSetForeground(dsp, gc, 0x00ffff00);
-  XFillRectangle(dsp, win, gc, 200, 100, 400, 100);
-  char *title1 = "SMHI VALIDATION TOOLS with CIMPRESS";
+  XFillRectangle(dsp, win, gc, NX / 4, NY / 10, NX / 2, NY / 10);
+  char *title1 = "SMHI VALIDATION TOOLS";
   XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
+  XDrawString(dsp, win, gc, NX / 3 , NY /3,title1,lenstring(title1));
   XSetForeground(dsp, gc, 0x000000ff);
   char pageinfo1[2] = "1";
-  XDrawString(dsp, win, gc, 380 , 780  ,pageinfo1 , 1);
+  XDrawString(dsp, win, gc, NX /2, NY - 20  ,pageinfo1 , 1);
 }    
 
 
@@ -143,7 +143,7 @@ int main(void){
 	first = 0;
       }
       setupfirstpage();
-      first = 0;
+      //first = 0;
     }break;
     }
   }
@@ -179,6 +179,15 @@ int main(void){
       
       if (keysym == XK_q){
 	done = 0;
+      }
+    }
+    else if (e.type == ConfigureNotify) {
+      XConfigureEvent xce = e.xconfigure;
+      if (xce.width != NX ||
+	  xce.height != NY) {
+	NX = xce.width;
+	NY = xce.height;
+	pagecall(&npage);
       }
     }
   }
