@@ -102,6 +102,7 @@ void init_x(void){
   screen_num = DefaultScreen(dsp);
   visual=DefaultVisual(dsp, 0);
   win    = XCreateSimpleWindow (dsp, DefaultRootWindow (dsp),0, 0, NX,NY,0,0xffffffff,0xffffffff);
+  XStoreName(dsp,win,"Cimpress");
   XSelectInput(dsp, win, ExposureMask | StructureNotifyMask | KeyPressMask | ButtonPressMask | PointerMotionMask);        // We want to get MapNotify events  
   fontinfo = XLoadQueryFont(dsp,"-adobe-helvetica-bold-r-normal--18-180-75-75-p-103-iso8859-15");
   //fontinfo = XLoadQueryFont(dsp,"9x15");
@@ -141,6 +142,7 @@ int main(void){
       //printf("%d \n",report.xexpose.count);
       if (report.xexpose.count == 0 ){
 	int ipend = XPending(dsp);
+	printf("ipend is %d\n",ipend);
 	for (int i= 0; i < ipend;++i)XFlush(dsp);
       }
       first = 0;
