@@ -89,7 +89,7 @@ void setupfirstpage(void){
   XFillRectangle(dsp, win, gc, NX / 4, NY / 10, NX / 2, NY / 10);
   char *title1 = "SMHI VALIDATION TOOLS";
   XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, NX / 3 , NY /3,title1,lenstring(title1));
+  XDrawString(dsp, win, gc, NX / 4 + NX / 8 , NY / 10 + NY /20,title1,lenstring(title1));
   XSetForeground(dsp, gc, 0x000000ff);
   char pageinfo1[2] = "1";
   XDrawString(dsp, win, gc, NX /2, NY - 20  ,pageinfo1 , 1);
@@ -139,9 +139,12 @@ int main(void){
       /* Draw our text first */
     case Expose:{
       //printf("%d \n",report.xexpose.count);
-      if (report.xexpose.count > 0 ){
-	first = 0;
+      if (report.xexpose.count == 0 ){
+	int ipend = XPending(dsp);
+	for (int i= 0; i < ipend;++i)XFlush(dsp);
       }
+      first = 0;
+      //}
       setupfirstpage();
       //first = 0;
     }break;
