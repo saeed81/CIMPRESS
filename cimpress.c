@@ -63,6 +63,11 @@ void writetostring(char *buffer, int N, char *str,...){
   va_end(vv);
   return;
 }
+void redraw() {
+  XClearWindow(dsp, win);
+}
+
+
 #include"pages.c" 
 
 
@@ -85,14 +90,19 @@ void setupfirstpage(void){
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "Validation tools for oceanography data  SMHI";
   XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XFlush(dsp);
   XSetForeground(dsp, gc, 0x00ffff00);
   XFillRectangle(dsp, win, gc, NX / 4, NY / 10, NX / 2, NY / 10);
+  XFlush(dsp);
   char *title1 = "SMHI VALIDATION TOOLS";
   XSetForeground(dsp, gc, 0x0);
   XDrawString(dsp, win, gc, NX / 4 + NX / 8 , NY / 10 + NY /20,title1,lenstring(title1));
+  XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
   char pageinfo1[2] = "1";
   XDrawString(dsp, win, gc, NX /2, NY - 20  ,pageinfo1 , 1);
+  XFlush(dsp);
+
 }    
 
 
@@ -131,29 +141,21 @@ void close_x(void){
 int main(void){
  
   init_x();
-
   int first = 1;
-  XEvent report;
+  int nn = 0;
   for (;first;) {
+    XEvent report;
     XNextEvent(dsp, &report);
-    switch (report.type) {
-      /* Draw our text first */
-    case Expose:{
-      //printf("%d \n",report.xexpose.count);
-      if (report.xexpose.count == 0 ){
-	int ipend = XPending(dsp);
-	printf("ipend is %d\n",ipend);
-	for (int i= 0; i < ipend;++i)XFlush(dsp);
+    if (report.xany.window == win){
+      if (report.type == Expose) printf("expose count is %d \n",report.xexpose.count);
+      if (report.type == Expose && report.xexpose.count == 0){
+	setupfirstpage();
+	nn++;
+	if (nn == 2) first = 0;
       }
-      first = 0;
-      //}
-      setupfirstpage();
-      //first = 0;
-    }break;
     }
   }
-  XFlush(dsp);    
-
+  XFlush(dsp);
   XEvent e;
   char BUFFER[80] = {'\0'};
   KeySym keysym;
