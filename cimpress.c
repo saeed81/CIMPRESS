@@ -16,17 +16,17 @@ typedef unsigned int  uint32;
 typedef unsigned char uint8;
 
 
-Display *dsp = NULL;
-Window win = 0;
-int screen_num = 0;
-GC gc;
-int NX = 900; 
-int NY = 600;
-Visual *visual = NULL;
-XGCValues gr_values;
-XFontStruct *fontinfo = NULL;
+static Display *dsp = NULL;
+static Window win = 0;
+static int screen_num = 0;
+static GC gc;
+static int NX = 900; 
+static int NY = 600;
+static Visual *visual = NULL;
+static XGCValues gr_values;
+static XFontStruct *fontinfo = NULL;
 
-uint32 lenstring(char *str){
+static uint32 lenstring(char *str){
   if (str == NULL) return 0U;
   uint32 len = 0U;
   while (*str != '\0'){
@@ -35,7 +35,7 @@ uint32 lenstring(char *str){
   }
   return len;
 }
-
+static
 void writetostring(char *buffer, int N, char *str,...){
   if (str == NULL) return;
   va_list vv;
@@ -72,10 +72,10 @@ void redraw() {
 
 
 typedef void (*pagewrap)(void);
-pagewrap pages[] = {&page1,&page2,&page3,&page4,&page5,&page6,&page7,&page8,&page9,&page10,&page11,&page12,&page13};
+static pagewrap pages[] = {&page1,&page2,&page3,&page4};
 
 
-
+static
 void pagecall(int *pgnum){
   int ntotal = ArrayCount(pages) - 1;   
   if (*pgnum > ntotal)*pgnum = ntotal;
@@ -85,7 +85,7 @@ void pagecall(int *pgnum){
   return;
 }  
 
-
+static
 void setupfirstpage(void){
 
   Pixmap pixmap = XCreatePixmap(dsp, win, NX, NY, DefaultDepth(dsp,screen_num));
@@ -107,7 +107,7 @@ void setupfirstpage(void){
   XFreePixmap(dsp,pixmap);
 }    
 
-
+static
 void init_x(void){
 
   dsp = XOpenDisplay((char *)0);
@@ -133,7 +133,7 @@ void init_x(void){
   XFlush(dsp);
  
 }
-
+static
 void close_x(void){
   XFreeGC(dsp,gc);
   XDestroyWindow(dsp,win);

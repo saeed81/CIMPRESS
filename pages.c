@@ -1,224 +1,91 @@
+static
 void page1(void){
-  XClearWindow(dsp,win);
-  XSetForeground(dsp, gc, 0x00ffff00);
-  XFillRectangle(dsp, win, gc, NX / 4, NY / 10, NX / 2, NY / 10);
-  XFlush(dsp);
-  char *title1 = "SMHI VALIDATION TOOLS";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, NX / 3 , NY /3,title1,lenstring(title1));
-  XFlush(dsp);
+
+  Pixmap pixmap = XCreatePixmap(dsp, win, NX, NY, DefaultDepth(dsp,screen_num));
+  XSetForeground(dsp, gc, 0xffffffff);
+  XFillRectangle(dsp, pixmap, gc, 0, 0, NX, NY);
   XSetForeground(dsp, gc, 0x00A9A9A9);
   char *title = "Validation tools for oceanography data  SMHI";
-  XDrawString(dsp, win, gc, 175 , 400  , title,lenstring(title));
+  XDrawString(dsp, pixmap, gc, 175 , 400  , title,lenstring(title));
+  XSetForeground(dsp, gc, 0x00ffff00);
+  XFillRectangle(dsp, pixmap, gc, NX / 4, NY / 10, NX / 2, NY / 10);
+  char *title1 = "SMHI VALIDATION TOOLS";
+  XSetForeground(dsp, gc, 0x0);
+  XDrawString(dsp, pixmap, gc, NX / 4 + NX / 8 , NY / 10 + NY /20,title1,lenstring(title1));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
-  char *pageinfo = "1";
-  XDrawString(dsp, win, gc, NX / 2 , NY -20  ,pageinfo , lenstring(pageinfo));
-  XFlush(dsp);
-  return;
+  char pageinfo1[2] = "1";
+  XDrawString(dsp, pixmap, gc, NX /2, NY - 20  ,pageinfo1 , 1);
+  XCopyArea (dsp, pixmap, win, gc,0, 0,NX, NY,0, 0);
+  XFreePixmap(dsp,pixmap);
 }
 
+
+static
 void page2(void){
-  XClearWindow(dsp,win);
-  char *line1 = "We started developing our tools.";
-  XDrawString(dsp, win, gc, 100 , 100  , line1, lenstring(line1));
-  XFlush(dsp);
-  char *line2 = "SSHVALIDATION and COCEAN";
-  XDrawString(dsp, win, gc, 100 , 200  , line2, lenstring(line2));
-  XFlush(dsp);
-  char *line3 = "It is based on python 2.7 and using matplotlib for figures";
-  XDrawString(dsp, win, gc, 100 , 300  , line3, lenstring(line3));
-  XFlush(dsp);
-  char *line4 = "The configuration file is in json data format.";
-  XDrawString(dsp, win, gc, 100 , 400  , line4, lenstring(line4));
+
+  Pixmap pixmap = XCreatePixmap(dsp, win, NX, NY, DefaultDepth(dsp,screen_num));
+  XSetForeground(dsp, gc, 0xffffffff);
+  XFillRectangle(dsp, pixmap, gc, 0, 0, NX, NY);
+  XSetForeground(dsp, gc, 0x00A9A9A9);
+  char *title = "Validation tools for oceanography data  SMHI";
+  XDrawString(dsp, pixmap, gc, 175 , 400  , title,lenstring(title));
+  XSetForeground(dsp, gc, 0x00ffff00);
+  XFillRectangle(dsp, pixmap, gc, NX / 4, NY / 10, NX / 2, NY / 10);
+  char *title1 = "SMHI VALIDATION TOOLS";
+  XSetForeground(dsp, gc, 0x0);
+  XDrawString(dsp, pixmap, gc, NX / 4 + NX / 8 , NY / 10 + NY /20,title1,lenstring(title1));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "2";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
+  char pageinfo1[2] = "2";
+  XDrawString(dsp, pixmap, gc, NX /2, NY - 20  ,pageinfo1 , 1);
+  XCopyArea (dsp, pixmap, win, gc,0, 0,NX, NY,0, 0);
+  XFreePixmap(dsp,pixmap);
 }
 
+static
 void page3(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 3";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
+
+  Pixmap pixmap = XCreatePixmap(dsp, win, NX, NY, DefaultDepth(dsp,screen_num));
+  XSetForeground(dsp, gc, 0xffffffff);
+  XFillRectangle(dsp, pixmap, gc, 0, 0, NX, NY);
   XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
+  char *title = "Validation tools for oceanography data  SMHI";
+  XDrawString(dsp, pixmap, gc, 175 , 400  , title,lenstring(title));
+  XSetForeground(dsp, gc, 0x00ffff00);
+  XFillRectangle(dsp, pixmap, gc, NX / 4, NY / 10, NX / 2, NY / 10);
+  char *title1 = "SMHI VALIDATION TOOLS";
+  XSetForeground(dsp, gc, 0x0);
+  XDrawString(dsp, pixmap, gc, NX / 4 + NX / 8 , NY / 10 + NY /20,title1,lenstring(title1));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "3";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
+  char pageinfo1[2] = "3";
+  XDrawString(dsp, pixmap, gc, NX /2, NY - 20  ,pageinfo1 , 1);
+  XCopyArea (dsp, pixmap, win, gc,0, 0,NX, NY,0, 0);
+  XFreePixmap(dsp,pixmap);
 }
 
+static
 void page4(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 4";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
+
+  Pixmap pixmap = XCreatePixmap(dsp, win, NX, NY, DefaultDepth(dsp,screen_num));
+  XSetForeground(dsp, gc, 0xffffffff);
+  XFillRectangle(dsp, pixmap, gc, 0, 0, NX, NY);
   XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
+  char *title = "Validation tools for oceanography data  SMHI";
+  XDrawString(dsp, pixmap, gc, 175 , 400  , title,lenstring(title));
+  XSetForeground(dsp, gc, 0x00ffff00);
+  XFillRectangle(dsp, pixmap, gc, NX / 4, NY / 10, NX / 2, NY / 10);
+  char *title1 = "SMHI VALIDATION TOOLS";
+  XSetForeground(dsp, gc, 0x0);
+  XDrawString(dsp, pixmap, gc, NX / 4 + NX / 8 , NY / 10 + NY /20,title1,lenstring(title1));
   XFlush(dsp);
   XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "4";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
+  char pageinfo1[2] = "4";
+  XDrawString(dsp, pixmap, gc, NX /2, NY - 20  ,pageinfo1 , 1);
+  XCopyArea (dsp, pixmap, win, gc,0, 0,NX, NY,0, 0);
+  XFreePixmap(dsp,pixmap);
 }
 
-void page5(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 5";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "5";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
-}
 
-void page6(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 6";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "6";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
-}
 
-void page7(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 7";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "7";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
-}
-
-void page8(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 8";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "8";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
-}
-
-void page9(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 9";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "9";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
-}
-
-void page10(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 10";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "10";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
-}
-void page11(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 11";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "11";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
-}
-void page12(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 12";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "12";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
-}
-void page13(void){
-  XClearWindow(dsp,win);
-  char *title1 = "Welcome to page 13";
-  XSetForeground(dsp, gc, 0x0);
-  XDrawString(dsp, win, gc, 275 , 150,title1,lenstring(title1));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x00A9A9A9);
-  char *title = "To be added later";
-  XDrawString(dsp, win, gc, 275 , 400  , title,lenstring(title));
-  XFlush(dsp);
-  XSetForeground(dsp, gc, 0x000000ff);
-  char *page = "13";
-  XDrawString(dsp, win, gc, 380 , 780  ,page , lenstring(page));
-  XFlush(dsp);
-  return;
-}
